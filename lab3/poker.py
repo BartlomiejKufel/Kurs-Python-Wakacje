@@ -1,9 +1,9 @@
 import random
 
-from sympy.strategies.core import switch
 
 ranks_list = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'D', 'K', 'A']  # rangi
 colors_list = ['c', 'd', 'h', 's']  #kolory
+folded_players = [] # indeksy graczy, którzy spasowali
 
 
 def histogram(input):
@@ -116,4 +116,7 @@ def cards_to_string(cards): # zwracanie wyglądu ręki gracza
 
     return result
 
+def player_fold(player_index): #pasowanie gracza
+    if player_index not in folded_players:
+        folded_players.append(player_index)
 

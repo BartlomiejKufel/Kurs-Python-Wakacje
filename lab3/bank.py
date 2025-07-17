@@ -8,15 +8,21 @@ def start(h, n): #ustawianie ilości żetonów na start dla każdego gracza
 
     return result
 
+def player_bet(player_index, h): #funkcja do brania od gracza żetonów
+    result = 0
+    if players_chips[player_index] >= h: # sprawdzenie, czy gracz ma wystarczającą ilość żetonów
+        players_chips[player_index] -= h
+        result += h
+    else:
+        result = players_chips[player_index]
+        players_chips[player_index] = 0
+
+    return result
 
 def get_from_all(h): #wzięcie od każdego gracza takiej samej ilości żetonów
     result = 0
     for i in range(len(players_chips)):
-        if players_chips[i] >= h: # sprawdzenie, czy gracz ma wystarczającą ilość żetonów
-            players_chips[i] -= h
-            result += h
-        else:
-            result += players_chips[i]
-            players_chips[i] = 0
+        result += player_bet(i, h)
 
     return result
+
